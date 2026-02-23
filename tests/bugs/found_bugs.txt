@@ -1,0 +1,79 @@
+#1
+Title: [BUG] Toggle All chevron/button only completes first pre-seeded item on initial app load
+
+Labels: bug, high-priority
+
+Steps to Reproduce:
+
+Navigate to http://localhost:8080/todo (do not add or change anything, vanilla build)
+Click the ↓ Toggle All chevron button on the left of the input field
+
+Expected: Both "Pay electric bill" and "Walk the dog" are marked as completed; counter shows 0 items left
+
+Actual: Only "Pay electric bill" is marked as completed; "Walk the dog" remains active; counter shows 1 item left
+
+Root Cause Hypothesis: The Toggle All handler likely reads the completion state of only the first item to determine the toggle direction, rather than checking whether all items are completed. Since both start as active, it should complete all — but the logic appears to stop after the first.
+
+
+#2
+Title: [BUG] Toggle All chevron/button does not unselect previously selected items from the list.
+
+Labels: bug, high-priority
+
+Steps to Reproduce:
+
+Navigate to http://localhost:8080/todo (do not add or change anything, vanilla build)
+
+Click the ↓ Toggle All chevron button on the left of the input field
+Monitor the todo's checking pattern 
+Click again on the ↓ Toggle All chevron button on the left of the input field
+
+Expected: Both "Pay electric bill" and "Walk the dog" should not be marked as completed; counter shows 2 items left. On each click on the mark all button the items should all mark and unmark without any issue.
+
+Actual: Only "Pay electric bill" is marked as completed; "Walk the dog" remains active; counter shows 1 item left on first clik on the mark all button. Every consecutive click after that one does nothing.
+
+Root Cause Hypothesis: Same Hypothesis from the first bug, but expanding the broken functionality when clicking multiple times on the select all chevron. It is possible that some id/flag is not set properly that would reset the logic.
+
+
+#3
+Title: [BUG] Checking the second item from the list checks both todo's
+
+Labels: bug, high-priority
+
+Steps to Reproduce:
+
+Scenario 1:
+Navigate to http://localhost:8080/todo (do not add or change anything, vanilla build)
+Check the second todo from the list "Walk the dog"
+
+Expected: Only "Walk the dog" todo should be marked as completed by strikethrough and checkbox checked. Counter should show "1 item left"
+
+Actual: Both items are marked as checked, "Pay electric bill" is striked, "Walk the dog" stays not striked. Counter shows "1 item left"
+
+Scenario 2:
+Navigate to http://localhost:8080/todo (do not add or change anything, vanilla build)
+Check the first ToDo.
+Check the second ToDo
+
+Expected: both todos should be marked as completed by strikethrough and checkbox checked. Counter should show "0 items left"
+
+Actual: Both items are marked as checked, "Pay electric bill" is striked, "Walk the dog" stays not striked. Counter shows "1 item left"
+
+Root Cause Hypothesis: The logic for both scenarios seems to be inacurately developed and the second item has inherited some locators from the first todo mixing up the frontend logic.
+
+#4
+Title: [BUG] When the todo app has all of it's todos deleted, when refreshing the page, it brings back the original two todo's.
+
+Labels: bug, high-priority
+
+Steps to Reproduce:
+Navigate to http://localhost:8080/todo (do not add or change anything, vanilla build)
+Mark both todos as completed then clear them all.
+Monitor that the todo app is blank and only the "What needs to be done?" field is left.
+Refresh the page by ether pressing on the "F5" button or clicking on the refresh page button.
+
+Expected: Application should retain it's data after refreshing the page. 
+
+Actual: Application resets to its initial state after first build run.
+
+Root Cause Hypothesis: It seems that the application does not forward data to the backend, and by doing so, when the page is refreshed it pulls fresh data from the DB where the changes were not saved.
