@@ -1,0 +1,63 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "cypress.io" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e6]:
+        - list [ref=e7]:
+          - listitem [ref=e8]:
+            - button "Commands" [ref=e9] [cursor=pointer]: Commands
+          - listitem [ref=e11]:
+            - link "Utilities" [ref=e12] [cursor=pointer]:
+              - /url: /utilities
+          - listitem [ref=e13]:
+            - link "Cypress API" [ref=e14] [cursor=pointer]:
+              - /url: /cypress-api
+        - list [ref=e15]:
+          - listitem [ref=e16]:
+            - link "GitHub" [ref=e17] [cursor=pointer]:
+              - /url: https://github.com/cypress-io/cypress-example-kitchensink
+  - generic [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - heading "todos" [level=1] [ref=e21]
+        - textbox "What needs to be done?" [ref=e22]
+      - generic [ref=e23]:
+        - checkbox "›Mark all as complete" [active] [ref=e24]
+        - generic [ref=e25]: ›Mark all as complete
+        - list [ref=e26]:
+          - listitem [ref=e27]:
+            - generic [ref=e28]:
+              - checkbox [checked] [ref=e29]
+              - generic [ref=e30]: Pay electric bill
+              - text: ×
+          - listitem [ref=e31]:
+            - generic [ref=e32]:
+              - checkbox [ref=e33]
+              - generic [ref=e34]: Walk the dog
+              - text: ×
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - strong [ref=e37]: "1"
+          - text: item left
+        - list [ref=e38]:
+          - listitem [ref=e39]:
+            - link "All" [ref=e40] [cursor=pointer]:
+              - /url: "#/"
+          - listitem [ref=e41]:
+            - link "Active" [ref=e42] [cursor=pointer]:
+              - /url: "#/active"
+          - listitem [ref=e43]:
+            - link "Completed" [ref=e44] [cursor=pointer]:
+              - /url: "#/completed"
+        - button "Clear completed" [ref=e45] [cursor=pointer]
+    - generic [ref=e46]:
+      - paragraph [ref=e47]: Double-click to edit a todo
+      - paragraph [ref=e48]:
+        - text: Forked from
+        - link "TodoMVC" [ref=e49] [cursor=pointer]:
+          - /url: http://todomvc.com
+```
