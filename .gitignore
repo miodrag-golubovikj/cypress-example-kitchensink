@@ -15,6 +15,7 @@ env
 # Playwright
 /test-results/
 /allure-results/
+/allure-report/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
