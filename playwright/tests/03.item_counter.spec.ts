@@ -24,8 +24,8 @@ test.describe('Item Counter', () => {
     { total: 2, completed: 1, expected: '1 item left'  },
     { total: 2, completed: 2, expected: '0 items left' },
     { total: 3, completed: 0, expected: '3 items left' },
-    { total: 3, completed: 1, expected: '0 items left' },
-    { total: 3, completed: 2, expected: '1 items left' },
+    { total: 3, completed: 1, expected: '2 items left' },
+    { total: 3, completed: 2, expected: '1 item left' },
     { total: 3, completed: 3, expected: '0 items left' },
   ];
 
