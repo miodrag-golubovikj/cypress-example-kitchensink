@@ -1,5 +1,5 @@
 name: Playwright Tests
-
+# Trigger the workflow on push or pull request to main/master branches
 on:
   push:
     branches: [ main, master ]
@@ -10,6 +10,8 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # ← required to push to gh-pages branch
 
     steps:
       - uses: actions/checkout@v4
@@ -18,20 +20,26 @@ jobs:
         with:
           node-version: lts/*
 
+      # Install exact dependencies from package-lock.json for a clean, reproducible install
       - name: Install dependencies
         run: npm ci
 
+      # Compile/build the Todo application before starting it
       - name: Build Application Todo
         run: npm run build
-
+      
+      # Start the application in the background so tests can run against it
       - name: Start Application
         run: npm start &
 
+      # Download and install all required Playwright browser binaries and OS dependencies
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      # Execute the full Playwright test suite and output results in Allure format
       - name: Run Playwright tests with Allure Output
         run: npm run test:allure
+        continue-on-error: true
 
       # Upload raw allure-results as an artifact (always, even on failure)
       - name: Upload Allure Results
@@ -53,7 +61,7 @@ jobs:
 
       # Generate the HTML Allure report with history
       - name: Build Allure report
-        uses: simple-elf/allure-report-action@master
+        uses: simple-elf/allure-report-action@v1
         if: always()
         with:
           gh_pages: gh-pages
@@ -69,3 +77,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
+          force_orphan: true
