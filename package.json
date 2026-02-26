@@ -48,8 +48,7 @@
     "local:run": "start-test 8080 cy:run",
     "local:run:record": "start-test 8080 cy:run:record",
     "ci:set-port": "node ./scripts/set-port",
-    "semantic-release": "semantic-release",
-    "prepare": "node .husky/install.mjs"
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
@@ -80,11 +79,10 @@
     "eslint-plugin-mocha": "11.2.0",
     "globals": "17.3.0",
     "globby": "11.1.0",
-    "husky": "9.0.6",
     "semantic-release": "25.0.2",
     "start-server-and-test": "2.0.11",
-    "yaml-lint": "1.7.0",
-    "typescript": "^5.4.0"
+    "typescript": "^5.4.0",
+    "yaml-lint": "1.7.0"
   },
   "engines": {
     "node": "^20.0.0 || ^22.0.0 || >=24.0.0"

@@ -1,1 +1,8 @@
 node_modules
+allure-results
+allure-report
+.git
+.github
+*.md
+.env
+npm-debug.log
